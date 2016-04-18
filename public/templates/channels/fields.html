@@ -21,7 +21,8 @@
 <ul class="url-list">
   <li ng-repeat="url in channel.cells[0].urls" class="url-item">
     <label>URL {{ 1 + $index }}</label>
-    <input type="url" name="cells0url{{ $index }}" ng-model="url.url" required />
+    <input type="text" name="cells0url{{ $index }}" ng-model="url.url" required />
+    <input type="text" name="cells0url0duration{{ $index }}" ng-model="url.duration" />
     <a ng-show="channel.cells[0].urls.length > 1" ng-click="removeUrlFromCell(url, 0)" class="remove-link icon-times"></a>
   </li>
   <a ng-click="channel.cells[0].urls.push({url: ''})" class="new-url">Add Another URL</a>

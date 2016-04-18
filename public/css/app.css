@@ -383,21 +383,31 @@ select {
 }
 /* App Styles */
 header {
-  background-color: #82b548;
-  color: #fff;
+  background-color: #ffeb39;
+  color: #000;
 }
 .logo {
   font-size: 1.5em;
   line-height: 2em;
   margin: 0;
-  font-family: 'OpenSansLight';
+  font-family: 'Futura',Helvetica,Arial,sans-serif;
+  text-shadow: #fff .5px .5px;
+  text-transform: uppercase;
 }
 .logo a {
-  color: #fff;
+  display: inline-block;
+  margin-left: 5px;
+  color: #000;
   text-decoration: none;
 }
 .logo .icon-logo-g:before {
   margin-right: 2px;
+}
+.logo img {
+  display: inline-block;
+  width: 35px;
+  float: left;
+  margin: 5px 0 0 0;
 }
 .user {
   font-size: .8em;
@@ -432,12 +442,12 @@ section + section {
   text-align: center;
   border-radius: 3px;
   line-height: 2.8em;
-  background-color: #0185c6;
+  background-color: #00B5FF;
   color: #fff;
   font-family: 'OpenSansLight';
 }
 .btn, input[type="submit"] {
-  background-color: #0185c6;
+  background-color: #00B5FF;
   color: #fff;
   border: 0;
   border-radius: 3px; 
@@ -659,7 +669,7 @@ section + section {
   cursor: pointer;
 }
 .radio:checked + span {
-  background-color: #c5dc6c;
+  background-color: #6FD5FF;
   color: #000;
 }
 .new-url {

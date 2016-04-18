@@ -35,7 +35,7 @@
       var cwd = '/';
       return {
         title: 'browser',
-        version: 'v0.10.29',
+        version: 'v4.2.1',
         browser: true,
         env: {},
         argv: [],
@@ -493,7 +493,11 @@
           mainContentUrlCounter++;
           if (mainContentUrlCounter >= urls.length)
             mainContentUrlCounter = 0;
-          seconds = parseInt(cell.duration, 10);
+          if (null != urls[mainContentUrlCounter].duration) {
+            seconds = parseInt(urls[mainContentUrlCounter].duration, 10);
+          } else {
+            seconds = parseInt(cell.duration, 10);
+          }
           lastTimeoutId = setTimeout(rotateMainContentUrl, seconds * 1e3);
         }
         if (!$scope.$$phase)
