@@ -481,23 +481,26 @@
       });
       mainContentUrlCounter = 0;
       lastTimeoutId = null;
-      return rotateMainContentUrl = function () {
+      return rotateMainContentUrl = function (counter) {
         var cell, seconds, urls;
         clearTimeout(lastTimeoutId);
         cell = $scope.channel.cells[0];
         urls = cell.urls;
+        if (null != counter)
+          mainContentUrlCounter = counter;
         if (urls.length === 1) {
           $scope.mainContentUrl = $sce.trustAsResourceUrl(urls[0].url);
         } else {
-          $scope.mainContentUrl = $sce.trustAsResourceUrl(urls[mainContentUrlCounter].url);
-          mainContentUrlCounter++;
-          if (mainContentUrlCounter >= urls.length)
-            mainContentUrlCounter = 0;
-          if (null != urls[mainContentUrlCounter].duration) {
+          if (null != urls[mainContentUrlCounter].duration && parseInt(urls[mainContentUrlCounter].duration)) {
             seconds = parseInt(urls[mainContentUrlCounter].duration, 10);
           } else {
             seconds = parseInt(cell.duration, 10);
           }
+          $scope.mainContentUrl = $sce.trustAsResourceUrl(urls[mainContentUrlCounter].url);
+          console.log(mainContentUrlCounter, seconds);
+          mainContentUrlCounter++;
+          if (mainContentUrlCounter >= urls.length)
+            mainContentUrlCounter = 0;
           lastTimeoutId = setTimeout(rotateMainContentUrl, seconds * 1e3);
         }
         if (!$scope.$$phase)

@@ -26,19 +26,21 @@ angular.module("GScreen").controller "Screen", ($scope, $sce, $location, Channel
 
   mainContentUrlCounter = 0
   lastTimeoutId = null
-  rotateMainContentUrl = ->
+  rotateMainContentUrl = (counter) ->
     clearTimeout lastTimeoutId
     cell = $scope.channel.cells[0]
     urls = cell.urls
+    mainContentUrlCounter = counter if counter?
     if urls.length == 1
       $scope.mainContentUrl = $sce.trustAsResourceUrl(urls[0].url)
     else
-      $scope.mainContentUrl = $sce.trustAsResourceUrl(urls[mainContentUrlCounter].url)
-      mainContentUrlCounter++
-      mainContentUrlCounter = 0 if mainContentUrlCounter >= urls.length
-      if urls[mainContentUrlCounter].duration?
+      if urls[mainContentUrlCounter].duration? && parseInt urls[mainContentUrlCounter].duration
         seconds = parseInt urls[mainContentUrlCounter].duration, 10
       else
         seconds = parseInt cell.duration, 10
+      $scope.mainContentUrl = $sce.trustAsResourceUrl(urls[mainContentUrlCounter].url)
+      console.log mainContentUrlCounter, seconds
+      mainContentUrlCounter++
+      mainContentUrlCounter = 0 if mainContentUrlCounter >= urls.length
       lastTimeoutId = setTimeout rotateMainContentUrl, seconds * 1000
     $scope.$apply() unless $scope.$$phase
