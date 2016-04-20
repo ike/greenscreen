@@ -21,9 +21,14 @@ config = require "./config"
 api = require("./routes/api")
 routes = require "./routes/routes"
 socketIO = require "socket.io"
+auth = require('http-auth');
+basic = auth.basic({
+  realm: "Digital Sun",
+  file: process.env.USERDIR + "/users.htpasswd"
+});
 
 app = express()
-server = http.createServer app
+server = http.createServer basic, app
 sockets = socketIO(server)
 
 app.use morgan('dev')
