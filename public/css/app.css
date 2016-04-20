@@ -628,6 +628,11 @@ section + section {
 .url-item input {
   margin: 0;
 }
+#url-duration {
+  width: 50px;
+  margin-left: 2px;
+  text-align: right;
+}
 .remove-link {
   -webkit-flex-shrink: 0;
   flex-shrink: 0;
