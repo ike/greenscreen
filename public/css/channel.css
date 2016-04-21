@@ -22,7 +22,8 @@ section {
   height: 0;
 }
 .widescreen {
-  padding-bottom: 62.5%;
+  height: 100%;
+  /*padding-bottom: 62.5%;*/
 }
 .macbook {
   padding-bottom: 62.5%;
